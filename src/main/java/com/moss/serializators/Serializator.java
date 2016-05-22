@@ -1,23 +1,27 @@
 package com.moss.serializators;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 
 import com.moss.model.Login;
 
 public abstract class Serializator {
 
-    public <T extends Login> long testWrite(ArrayList<T> logins) {
-        long start = System.currentTimeMillis();
+    public <T extends Login> double testWrite(ArrayList<T> logins) {
+        Instant before = Instant.now();
         serialize(logins);
-        long end = System.currentTimeMillis();
-        return (end - start);
+        Instant after = Instant.now();
+        double delta = Duration.between(before, after).toMillis();
+        return delta;
     }
 
-    public <T extends Login> long testRead(ArrayList<T> logins) {
-        long start = System.currentTimeMillis();
+    public <T extends Login> double testRead(ArrayList<T> logins) {
+        Instant before = Instant.now();
         deserialize();
-        long end = System.currentTimeMillis();
-        return (end - start);
+        Instant after = Instant.now();
+        double delta = Duration.between(before, after).toMillis();
+        return delta;
     }
 
     protected abstract <T extends Login> void serialize(ArrayList<T> logins);

@@ -2,8 +2,6 @@ package com.moss.app;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
 import com.moss.model.Data;
 import com.moss.model.Login;
 import com.moss.model.LoginSerial;
@@ -34,35 +32,35 @@ public class App {
     public void testSerializers() {
         for (Serializator serializator : serializators) {
             for (ArrayList<Login> loginArray : logins) {
-                long processingTime = 0;
+                double processingTime = 0;
                 for (int i = 0; i < numberOfTests; i++) {
                     processingTime += serializator.testWrite(loginArray);
                     processingTime += serializator.testRead(loginArray);
                 }
-                float avgTime = processingTime / numberOfTests;
+                double avgTime = processingTime / numberOfTests;
                 System.out.println(serializator.getClass().toString() + " Processing time : " + avgTime);
             }
         }
 
         JavaSerializable javaSerializable = new JavaSerializable();
         for (ArrayList<LoginSerial> loginArray : loginsSerial) {
-            long processingTime = 0;
+            double processingTime = 0;
             for (int i = 0; i < numberOfTests; i++) {
                 processingTime += javaSerializable.testWrite(loginArray);
                 processingTime += javaSerializable.testRead(loginArray);
             }
-            float avgTime = processingTime / numberOfTests;
+            double avgTime = processingTime / numberOfTests;
             System.out.println(javaSerializable.getClass().toString() + " Processing time : " + avgTime);
         }
 
         JavaExternalizable javaExternalizable = new JavaExternalizable();
         for (ArrayList<LoginExt> loginArray : loginsExt) {
-            long processingTime = 0;
+            double processingTime = 0;
             for (int i = 0; i < numberOfTests; i++) {
                 processingTime += javaExternalizable.testWrite(loginArray);
                 processingTime += javaExternalizable.testRead(loginArray);
             }
-            float avgTime = processingTime / numberOfTests;
+            double avgTime = processingTime / numberOfTests;
             System.out.println(javaExternalizable.getClass().toString() + " Processing time : " + avgTime);
         }
     }
