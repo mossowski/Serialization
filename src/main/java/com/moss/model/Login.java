@@ -1,15 +1,13 @@
 package com.moss.model;
 
-import java.io.Serializable;
+public class Login {
 
-public class Login implements Serializable {
+    protected String username;
+    protected String password;
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
-    private String username;
-    private String password;
+    public Login() {
+
+    }
 
     public Login(String username, String password) {
         this.username = username;

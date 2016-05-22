@@ -16,7 +16,10 @@ public class Gson extends Serializator {
     protected void serialize(ArrayList<Login> logins) {
         com.google.gson.Gson gson = new com.google.gson.Gson();
         try {
-            gson.toJson(logins, new FileWriter(FILE_NAME));
+            String json = gson.toJson(logins);
+            FileWriter writer = new FileWriter(FILE_NAME);
+            writer.write(json);
+            writer.close();
         } catch (JsonIOException | IOException e) {
             e.printStackTrace();
         }
