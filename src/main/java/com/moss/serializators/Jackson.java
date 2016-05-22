@@ -12,7 +12,7 @@ public class Jackson extends Serializator {
     final String FILE_NAME = "jackson.json";
 
     @Override
-    protected void serialize(ArrayList<Login> logins) {
+    protected <T extends Login> void serialize(ArrayList<T> logins) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             mapper.writeValue(new File(FILE_NAME), logins);
@@ -22,9 +22,9 @@ public class Jackson extends Serializator {
     }
 
     @Override
-    protected ArrayList<Login> deserialize() {
+    protected <T extends Login> ArrayList<T> deserialize() {
         ObjectMapper mapper = new ObjectMapper();
-        ArrayList<Login> logins = new ArrayList<Login>();
+        ArrayList<T> logins = new ArrayList<T>();
         try {
             logins = mapper.readValue(new File(FILE_NAME), ArrayList.class);
         } catch (IOException e) {

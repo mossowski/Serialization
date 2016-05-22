@@ -13,7 +13,7 @@ public class Gson extends Serializator {
     final String FILE_NAME = "gson.json";
 
     @Override
-    protected void serialize(ArrayList<Login> logins) {
+    protected <T extends Login> void serialize(ArrayList<T> logins) {
         com.google.gson.Gson gson = new com.google.gson.Gson();
         try {
             String json = gson.toJson(logins);
@@ -26,9 +26,9 @@ public class Gson extends Serializator {
     }
 
     @Override
-    protected ArrayList<Login> deserialize() {
+    protected <T extends Login> ArrayList<T> deserialize() {
         com.google.gson.Gson gson = new com.google.gson.Gson();
-        ArrayList<Login> result = new ArrayList<Login>();
+        ArrayList<T> result = new ArrayList<T>();
         try {
             result = gson.fromJson(new FileReader(FILE_NAME), ArrayList.class);
         } catch (JsonIOException | IOException e) {

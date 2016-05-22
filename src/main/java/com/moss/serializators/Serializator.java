@@ -6,22 +6,22 @@ import com.moss.model.Login;
 
 public abstract class Serializator {
 
-    public long testWrite(ArrayList<Login> logins) {
+    public <T extends Login> long testWrite(ArrayList<T> logins) {
         long start = System.currentTimeMillis();
         serialize(logins);
         long end = System.currentTimeMillis();
         return (end - start);
     }
 
-    public long testRead(ArrayList<Login> logins) {
+    public <T extends Login> long testRead(ArrayList<T> logins) {
         long start = System.currentTimeMillis();
         deserialize();
         long end = System.currentTimeMillis();
         return (end - start);
     }
 
-    protected abstract void serialize(ArrayList<Login> logins);
+    protected abstract <T extends Login> void serialize(ArrayList<T> logins);
 
-    protected abstract ArrayList<Login> deserialize();
+    protected abstract <T extends Login> ArrayList<T> deserialize();
 
 }
